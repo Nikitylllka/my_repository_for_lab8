@@ -5,7 +5,7 @@
 #include <iostream>
 #include <boost/asio.hpp>
 
-using namespace std;
+
 
 using std::thread;
 using std::exception;
@@ -48,7 +48,7 @@ public:
         boost::asio::read_until(my_socket, buffer, '\n');
 
         std::string check_ping(istreambuf_iterator<char>{&buffer},
-                                   istreambuf_iterator<char>{}); // (c) MoraPresence
+                              istreambuf_iterator<char>{});
         check_ping = Erase_str(check_ping);
 
         cout << check_ping << endl;
@@ -73,7 +73,7 @@ public:
         boost::asio::read_until(my_socket, buffer, '\n');
 
         std::string answer_login(istreambuf_iterator<char>{&buffer},
-                                 istreambuf_iterator<char>{}); // (c) MoraPresence
+                                 istreambuf_iterator<char>{});
 
         cout << answer_login << endl;
     }
@@ -82,7 +82,7 @@ public:
         boost::asio::read_until(my_socket, buffer, '\n');
 
         std::string answer_request(istreambuf_iterator<char>{&buffer},
-                                   istreambuf_iterator<char>{}); // (c) MoraPresence
+                               istreambuf_iterator<char>{});
         answer_request = Erase_str(answer_request);
 
         if (answer_request == "Please enter a valid request") {
@@ -120,7 +120,6 @@ public:
     void Start() {
         Connect();
     }
-
 };
 
 int main() {

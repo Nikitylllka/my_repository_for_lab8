@@ -72,28 +72,28 @@ public:
 
         boost::asio::read_until(my_socket, buffer, '\n');
 
-        std::string answer_login(istreambuf_iterator<char>{&buffer},
-                                 istreambuf_iterator<char>{});
+        std::string answer_login(std::istreambuf_iterator<char>{&buffer},
+                                 std::istreambuf_iterator<char>{});
 
-        cout << answer_login << endl;
+        std::cout << answer_login << std::endl;
     }
 
     void Read() {
         boost::asio::read_until(my_socket, buffer, '\n');
 
-        std::string answer_request(istreambuf_iterator<char>{&buffer},
-                               istreambuf_iterator<char>{});
+           std::string answer_request(std::istreambuf_iterator<char>{&buffer},
+                              std::istreambuf_iterator<char>{});
         answer_request = Erase_str(answer_request);
 
         if (answer_request == "Please enter a valid request") {
-            cout << answer_request << endl;
+            std::cout << answer_request << std::endl;
             Write();
         } else if (answer_request == "login") {
             Login();
         } else if (answer_request == "ping") {
             Ping();
         } else {
-            cout << answer_request << endl;
+            std::cout << answer_request << std::endl;
             //  exit(ERROR_unknown_answer_request);
         }
     }
@@ -101,7 +101,7 @@ public:
     void Write() {
         boost::asio::streambuf buffer{};
         std::ostream out(&buffer);
-        string request = Request_record();
+        std::string request = Request_record();
         out << request;
         boost::asio::write(my_socket, buffer);
 

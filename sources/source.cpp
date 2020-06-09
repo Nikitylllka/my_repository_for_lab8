@@ -15,7 +15,6 @@ using endpoint = boost::asio::ip::tcp::endpoint;
 using input_ip = boost::asio::ip::address;
 using io_context = boost::asio::io_context;
 const char ip_sock[] = "127.0.0.1";
-const char ERROR_unknown_answer_request = 1;
 
 struct MyClient {
 public:

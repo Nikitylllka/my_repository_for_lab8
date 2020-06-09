@@ -25,21 +25,21 @@ public:
 
     MyClient() : my_socket(context) {}
 
-    string Login_record() {
-        cout << "Put your name : ";
-        string name;
-        cin >> name;
+    std::string Login_record() {
+        std::cout << "Put your name : ";
+        std::string name;
+        std::cin >> name;
         return name + "\n";
     }
 
-    string Request_record() {
-        cout << "Choose request: login, ping or list : " << endl;
-        string str;
-        cin >> str;
+    std::string Request_record() {
+        std::cout << "Choose request: login, ping or list : " << std::endl;
+        std::string str;
+        std::cin >> str;
         return str + "\n";
     }
 
-    string Erase_str(string a) {
+    std::string Erase_str(std::string a) {
         a = a.erase(a.size() - 1);
         return a;
     }
@@ -47,16 +47,16 @@ public:
     void Check_ping() {
         boost::asio::read_until(my_socket, buffer, '\n');
 
-        std::string check_ping(istreambuf_iterator<char>{&buffer},
-                              istreambuf_iterator<char>{});
+        std::string check_ping(std::istreambuf_iterator<char>{&buffer},
+                              std::istreambuf_iterator<char>{});
         check_ping = Erase_str(check_ping);
 
-        cout << check_ping << endl;
+        std::cout << check_ping << std::endl;
     }
 
     void Ping() {
         std::ostream out(&buffer);
-        string ping;
+        std::string ping;
         ping = "ping ok?";
         out << ping << "\n";
         boost::asio::write(my_socket, buffer);
@@ -66,7 +66,7 @@ public:
 
     void Login() {
         std::ostream out(&buffer);
-        string login = Login_record();
+        std::string login = Login_record();
         out << login;
         boost::asio::write(my_socket, buffer);
 

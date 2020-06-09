@@ -23,7 +23,7 @@ public:
     sock my_socket;
     boost::asio::streambuf buffer{};
 
-    explicit MyClient() : my_socket(context) {}
+    MyClient() : my_socket(context) {}
 
     string Login_record() {
         cout << "Put your name : ";

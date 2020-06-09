@@ -99,7 +99,6 @@ public:
     }
 
     void Write() {
-        boost::asio::streambuf buffer{};
         std::ostream out(&buffer);
         std::string request = Request_record();
         out << request;
